@@ -6,7 +6,7 @@ export default function Navbar() {
   return (
     <nav>
       <div className="logo-navbar">
-        <Link>
+        <Link to="/home">
           <img src="../../public/MushroomTrailNavbar.png" className="image-logo"></img>
         </Link>
       </div>

@@ -1,11 +1,12 @@
 
 import { Link } from "react-router-dom"
 import { useState } from "react"
-import "./Login.css"
+import "./Register.css"
 
 
 
-export default function Login() {
+export default function Register() {
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -23,8 +24,12 @@ export default function Login() {
 
   return (
     <div className="login-container">
-      <h1> ACCEDI</h1>
+      <h1> REGISTRATI</h1>
       <form onSubmit={handleSubmit}>
+        <label htmlFor="username" >
+          Username:
+        </label>
+        <input type="text" value={username} name="username" id="username" onChange={(e) => setUsername(e.target.value)} required disabled={loading} />
 
         <label htmlFor="email" >
           Email:
@@ -36,11 +41,11 @@ export default function Login() {
         </label>
         <input type="password" value={password} name="password" id="password" onChange={(e) => setPassword(e.target.value)} required disabled={loading} />
 
-        <button type="submit">Accedi</button>
+        <button type="submit">Registrati</button>
       </form>
       <div>
-        <Link> Non hai ancora un account? </Link>
-        <button>Registrati</button>
+        <Link> Hai già un account? </Link>
+        <button>Accedi</button>
       </div>
 
     </div>
