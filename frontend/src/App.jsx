@@ -5,6 +5,7 @@ import { lazy, Suspense } from 'react'
 import Navbar from './components/Navbar'
 
 
+
 function App() {
   const Login = lazy(() => import('./pages/Login/Login'))
 
