@@ -2,18 +2,21 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import "./Login.css"
+import { useLocation } from "react-router-dom";
 
 
 
 export default function Login() {
+  const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [successoRegistrazione, setSuccessoRegistrazione] = useState(location.state?.successoRegistrazione || false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSuccessoRegistrazione(false);
     setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
     setLoading(false)
 
   }
@@ -24,6 +27,7 @@ export default function Login() {
   return (
     <div className="login-container">
       <h1> ACCEDI</h1>
+      {successoRegistrazione && <p style={{ color: "green" }} aria-live="polite">Registrazione effettuata con successo, ora puoi accedere con le tue credenziali</p>}
       <form onSubmit={handleSubmit}>
 
         <label htmlFor="email" >
@@ -39,8 +43,9 @@ export default function Login() {
         <button type="submit">Accedi</button>
       </form>
       <div>
-        <Link> Non hai ancora un account? </Link>
-        <button>Registrati</button>
+        <Link to="/register"> Non hai ancora un account?
+          <button>Registrati</button>
+        </Link>
       </div>
 
     </div>

@@ -1,7 +1,9 @@
 
-import { Link } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import { useState } from "react"
 import "./Register.css"
+import { registerUser } from "../../api/registerUser"
+import { useNavigate } from "react-router-dom"
 
 
 
@@ -9,13 +11,26 @@ export default function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState("");
+  const [error, setError] = useState(false);
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setLoading(false)
+    setError("")
+    try {
+      const response = await registerUser(username, email, password);
+      if (response) {
+        navigate("/login", { state: { successoRegistrazione: true } })
+      }
+    } catch (err) {
+      console.log(err.message)
+      setError(err.message)
+    } finally {
+      setLoading(false);
+    }
+
 
   }
 
@@ -25,6 +40,7 @@ export default function Register() {
   return (
     <div className="login-container">
       <h1> REGISTRATI</h1>
+      {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}
       <form onSubmit={handleSubmit}>
         <label htmlFor="username" >
           Username:
@@ -44,8 +60,9 @@ export default function Register() {
         <button type="submit">Registrati</button>
       </form>
       <div>
-        <Link> Hai già un account? </Link>
-        <button>Accedi</button>
+        <Link to="/login"> Hai già un account?
+          <button>Accedi</button>
+        </Link>
       </div>
 
     </div>
