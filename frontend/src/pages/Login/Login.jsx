@@ -4,6 +4,9 @@ import { useState } from "react"
 import "./Login.css"
 import { useLocation } from "react-router-dom";
 import { loginUser } from "../../api/loginUser"
+import { useDispatch } from "react-redux";
+import { login } from "../../features/authSlice";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -14,6 +17,11 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [successoRegistrazione, setSuccessoRegistrazione] = useState(location.state?.successoRegistrazione || false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,7 +30,8 @@ export default function Login() {
     try {
       const response = await loginUser(email, password);
       if (response) {
-        console.log("autenticato");
+        dispatch(login());
+        navigate("/")
       }
     } catch (err) {
       setError(err.message)
