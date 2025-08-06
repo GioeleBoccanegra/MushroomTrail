@@ -14,6 +14,7 @@ export default function Navbar() {
   }
   return (
     <nav>
+
       <div className="logo-navbar">
         <Link to="/">
           <img src="../../public/MushroomTrailNavbar.png" className="image-logo"></img>
@@ -23,6 +24,6 @@ export default function Navbar() {
       <div className="button-navbar">
         <button className="logout-button" onClick={() => handleLogout()}>Logout</button>
       </div>
-    </nav>
+    </nav >
   )
 }

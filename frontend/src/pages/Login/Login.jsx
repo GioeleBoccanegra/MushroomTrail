@@ -30,6 +30,8 @@ export default function Login() {
     try {
       const response = await loginUser(email, password);
       if (response) {
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("userId", response.userId)
         dispatch(login());
         navigate("/")
       }
