@@ -14,6 +14,7 @@ export const loginUser = async (email, password) => {
 
     if (res.ok) {
       const data = await res.json();
+      console.log(data)
       return data;
     } else {
       const errData = await res.text();

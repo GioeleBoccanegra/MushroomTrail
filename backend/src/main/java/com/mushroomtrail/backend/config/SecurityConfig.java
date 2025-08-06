@@ -4,19 +4,36 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import com.mushroomtrail.backend.service.UserService;
 
 // Questo package contiene le classi di configurazione dell'applicazione
 // Questa annotazione dice a Spring che questa classe contiene dei bean da gestire
 @Configuration
 public class SecurityConfig {
+
+  private final UserService userService;
+  private final JwtUtils jwtUtils;
+
+  public SecurityConfig(@Lazy UserService userService, JwtUtils jwtUtils) {
+    this.userService = userService;
+    this.jwtUtils = jwtUtils;
+  }
+
+  @Bean
+  public JwtAuthFilter jwtAuthFilter() {
+    return new JwtAuthFilter(jwtUtils, userService);
+  }
 
   // Questo metodo crea un bean di tipo PasswordEncoder che sarà gestito da Spring
   @Bean
@@ -30,7 +47,7 @@ public class SecurityConfig {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
     http
-        .csrf(csrf -> csrf.disable())
+        .csrf(csrf -> csrf.disable())// disabilitiamo CSRF perché lavoriamo con API REST
         // attiva cors personalizzato
         .cors(cors -> cors.configurationSource(CorsConfigurationSource()))
         .authorizeHttpRequests(auth -> auth
@@ -38,6 +55,8 @@ public class SecurityConfig {
             .requestMatchers(HttpMethod.POST, "/api/users").permitAll()
             .requestMatchers(HttpMethod.POST, "/api/login").permitAll()
             .anyRequest().authenticated())
+        // inseriamo il filtro prima di quello standard
+        .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class)
         .formLogin(form -> form.disable())
         .httpBasic(httpBasic -> httpBasic.disable());
     return http.build();
@@ -64,13 +83,3 @@ public class SecurityConfig {
   }
 
 }
-
-/*
- * Un bean è un oggetto gestito dal contenitore di Spring.
- * 
- * In pratica, quando scrivi una classe e dici a Spring:
- * 
- * "Gestiscilo tu, crealo tu, dammelo tu quando serve"
- * 
- * … allora quello è un bean.
- */
