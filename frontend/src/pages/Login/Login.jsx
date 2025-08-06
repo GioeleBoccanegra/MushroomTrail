@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { useState } from "react"
 import "./Login.css"
 import { useLocation } from "react-router-dom";
+import { loginUser } from "../../api/loginUser"
 
 
 
@@ -11,14 +12,24 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [successoRegistrazione, setSuccessoRegistrazione] = useState(location.state?.successoRegistrazione || false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSuccessoRegistrazione(false);
     setLoading(true);
-    setLoading(false)
-
+    try {
+      const response = await loginUser(email, password);
+      if (response) {
+        console.log("autenticato");
+      }
+    } catch (err) {
+      setError(err.message)
+    }
+    finally {
+      setLoading(false);
+    }
   }
 
 
@@ -27,6 +38,7 @@ export default function Login() {
   return (
     <div className="login-container">
       <h1> ACCEDI</h1>
+      {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}
       {successoRegistrazione && <p style={{ color: "green" }} aria-live="polite">Registrazione effettuata con successo, ora puoi accedere con le tue credenziali</p>}
       <form onSubmit={handleSubmit}>
 
