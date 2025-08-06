@@ -25,7 +25,7 @@ export default function Register() {
         navigate("/login", { state: { successoRegistrazione: true } })
       }
     } catch (err) {
-      console.log(err.message)
+      console.log(err)
       setError(err.message)
     } finally {
       setLoading(false);

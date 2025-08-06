@@ -14,10 +14,11 @@ export const registerUser = async (username, email, password) => {
       return true;
     } else {
       const errData = await res.text();
-      throw new Error(errData || "errore nella registrazione");
+      throw new Error(errData || "errore nella registrazione")
+
     }
-  } catch {
-    throw new Error("errore durante la registrazione")
+  } catch (err) {
+    throw new Error(err.message || "errore durante la registrazione, riprovare");
   }
 
 }
