@@ -6,7 +6,6 @@ import Navbar from './components/Navbar'
 import { useDispatch } from 'react-redux'
 import { logout, login } from "./features/authSlice"
 import { useSelector } from 'react-redux'
-
 import { PublicRoutes } from "./components/PublicRoutes";
 import { ProtectedRoutes } from "./components/ProtectedRoutes";
 
@@ -35,7 +34,7 @@ function App() {
 
   return (
     <Router>
-      <Navbar />
+      {isAuthenticated && <Navbar />}
       <Suspense fallback={<div>Caricamento pagina....</div>}>
         <Routes>
           <Route path='/login' element={<PublicRoutes isAuthenticated={isAuthenticated}><Login /></PublicRoutes>} />
