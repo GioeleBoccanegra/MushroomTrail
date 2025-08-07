@@ -15,21 +15,6 @@ export default function Home() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
 
 
-  const refreshPosition = async () => {
-    navigator.geolocation.getCurrentPosition(//ricavo posizione attuale
-      (position) => {
-        setLatitudine(position.coords.latitude);
-        setLongitudine(position.coords.longitude);
-        setLatitudine(46.1677522);
-        setLongitudine(12.3531863);
-      },
-      (error) => {
-        setError("Errore nel recupero della posizione:", error)
-      }
-    )
-  }
-
-
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(//ricavo posizione attuale
@@ -51,12 +36,9 @@ export default function Home() {
 
       <h1>MASHROOMTRAIL</h1>
       {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}
-      {isAuthenticated && <p>autneticato</p>}
-      {latitudine && <p>{latitudine}</p>}
-      {longitudine && <p> {longitudine}</p>}
       <Mappa longitudine={longitudine} latitudine={latitudine} />
 
-      <button onClick={() => { refreshPosition() }}>aggiorna la tua posizione</button>
+      <button onClick={() => { console.log("ciao") }}>aggiungi punto</button>
     </div>
   )
 

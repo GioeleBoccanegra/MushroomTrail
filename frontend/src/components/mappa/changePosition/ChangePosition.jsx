@@ -1,15 +1,16 @@
 import { useEffect } from "react";
 import { useMap } from "react-leaflet"
 
-export default function ChangePosition({ latitudine, longitudine }) {
+export default function ChangePosition({ position }) {
+
+
   const map = useMap();
 
   useEffect(() => {
-    const center = [latitudine, longitudine];
-    if (center) {
-      map.setView(center, map.getZoom())
+    if (position) {
+      map.setView(position, map.getZoom())
     }
-  }, [latitudine, longitudine, map])
+  }, [position, map])
 
   return null;
 }
