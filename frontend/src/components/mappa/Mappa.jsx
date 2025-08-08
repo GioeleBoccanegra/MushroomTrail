@@ -17,7 +17,7 @@ const redIcon = new L.Icon({
 
 
 
-export default function Mappa({ latitudine, longitudine }) {
+export default function Mappa({ latitudine, longitudine, spotsList }) {
 
 
   const [position, setPosition] = useState();
@@ -58,8 +58,6 @@ export default function Mappa({ latitudine, longitudine }) {
     )
   }
 
-  const puntoInteresse = [12.444, 45.33333];
-
 
 
 
@@ -69,6 +67,8 @@ export default function Mappa({ latitudine, longitudine }) {
 
 
   return (
+
+
     <MapContainer center={[latitudine, longitudine]} zoom={15} style={{ height: '500px', width: '100%' }}>
       <TileLayer
         url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
@@ -82,11 +82,14 @@ export default function Mappa({ latitudine, longitudine }) {
       </Marker>
 
 
-      <Marker position={puntoInteresse} icon={redIcon}>
-        <Popup>
-          punto di interesse <a href={`https://www.google.com/maps/search/?api=1&query=${puntoInteresse[0]},${puntoInteresse[1]}`} target="_blank"
-            rel="noopener noreferrer">raggiungi </a></Popup>
-      </Marker>
+      {spotsList && spotsList
+        .filter(spot => spot.latitude !== undefined && spot.longitude !== undefined)
+        .map((spot) => (
+          <Marker key={spot.id} position={[spot.latitude, spot.longitude]} icon={redIcon}><Popup>
+            punto di interesse <a href={`https://www.google.com/maps/search/?api=1&query=${spot.latitude},${spot.longitude}`} target="_blank"
+              rel="noopener noreferrer">raggiungi </a></Popup></Marker>
+        ))};
+
 
 
 
@@ -95,6 +98,7 @@ export default function Mappa({ latitudine, longitudine }) {
 
 
     </MapContainer >
+
   )
 
 }
