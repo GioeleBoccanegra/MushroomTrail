@@ -1,0 +1,16 @@
+.post-add-overlay {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.288);
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-post-div {
+  background-color: black;
+  display: flex;
+  height: 80vh;
+  width: 80vw;
+}

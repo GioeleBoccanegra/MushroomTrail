@@ -1,27 +1,21 @@
 const BACKEND_URL = import.meta.env.VITE_CLOUDINARY_URL_BACKEND;
-import unauthorizedCall from "../utils/unauthorizedCall";
 
-export const getUserSpots = async (userId, token) => {
 
+
+export const postUser = async (token, spot) => {
   try {
-    const res = await fetch(`${BACKEND_URL}/api/spot/user/${userId}`, {
+    const res = await fetch(`${BACKEND_URL}/api/spot`, {
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`
-      }
+      },
+      body: JSON.stringify({ spot })
+    })
+
+    if (!res.ok) {
+      throw new Error("Errore nella creazione spot")
     }
-    )
-
-    unauthorizedCall(res);
-
-    if (!res.ok) { throw new Error("Errore nel recupero degli spot") };
-    const text = await res.text();
-    if (!text) {
-      throw new Error("risposta vuota al server");
-    }
-    const data = JSON.parse(text);
-
-    return data
+    return res
   } catch (err) {
     if (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')) {
       throw new Error("Impossibile connettersi al server. Verificare che il backend sia attivo.");

@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react"
 import "./Home.css"
-import { useSelector } from "react-redux"
 import { getValidToken } from "../../utils/getValidToken"
 import { getUserSpots } from "../../api/getUserSpots"
-
 import Mappa from "../../components/mappa/Mappa"
+import AddSpot from "./addSpot/AddSpot"
 
 
 export default function Home() {
@@ -12,10 +11,18 @@ export default function Home() {
   const [longitudine, setLongitudine] = useState(null);
   const [error, setError] = useState(null);
   const [spotsList, setSpotsList] = useState([]);
+  const [addingSpot, setAddingSpot] = useState(false);
 
 
+  const openAddingSpot = () => {
+    document.body.classList.add('no-scroll');
+    setAddingSpot(true)
+  }
 
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
+  const closeAddingSpot = () => {
+    document.body.classList.remove('no-scroll');
+    setAddingSpot(false)
+  }
 
 
   const getSposts = async (token, userId) => {
@@ -23,7 +30,9 @@ export default function Home() {
     return res
   }
 
+
   useEffect(() => {
+
     const fetchData = async () => {
       const userId = localStorage.getItem("userId")
       const token = getValidToken();
@@ -51,13 +60,13 @@ export default function Home() {
   }, [])
 
   return (
-    <div>
+    <div className={addingSpot ? "home-content no-click" : "home-content"}>
 
       <h1>MASHROOMTRAIL</h1>
       {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}
       <Mappa longitudine={longitudine} latitudine={latitudine} spotsList={spotsList} />
-
-      <button onClick={() => { console.log("ciao") }}>aggiungi punto</button>
+      {addingSpot && <AddSpot closeAddingSpot={closeAddingSpot} />}
+      <button onClick={() => { openAddingSpot() }}>aggiungi punto</button>
     </div>
   )
 
