@@ -18,7 +18,11 @@ export const registerUser = async (username, email, password) => {
 
     }
   } catch (err) {
-    throw new Error(err.message || "errore durante la registrazione, riprovare");
+    if (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')) {
+      throw new Error("Impossibile connettersi al server. Verificare che il backend sia attivo.");
+    } else {
+      throw new Error("errore nel recupero dati: " + (err.message || "errore sconosciuto"))
+    }
   }
 
 }

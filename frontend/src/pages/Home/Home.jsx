@@ -43,7 +43,7 @@ export default function Home() {
             setLongitudine(position.coords.longitude);
           },
           (error) => {
-            setError("Errore nel recupero della posizione:", error)
+            setError("Errore nel recupero della posizione:", error.message)
           }
         )
       } else {
