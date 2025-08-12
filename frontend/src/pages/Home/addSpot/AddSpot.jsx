@@ -27,9 +27,9 @@ export default function AddSpot({ closeAddingSpot }) {
         reject(new Error("Geolocalizzazione non supportata dal browser."));
       } else {
         navigator.geolocation.getCurrentPosition(resolve, reject, {
-          enableHighAccuracy: false,
+          enableHighAccuracy: true,
           timeout: 10000,
-          maximumAge: 0,
+          maximumAge: 1000,
         });
       }
     });
