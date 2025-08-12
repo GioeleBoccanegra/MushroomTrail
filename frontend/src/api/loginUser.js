@@ -2,6 +2,7 @@
 
 const BACKEND_URL = import.meta.env.VITE_CLOUDINARY_URL_BACKEND;
 export const loginUser = async (email, password) => {
+  console.log(`${BACKEND_URL}/api/login`)
   try {
     const res = await fetch(`${BACKEND_URL}/api/login`, {
       method: "POST",
