@@ -55,21 +55,19 @@ export default function AddSpot({ closeAddingSpot }) {
     }
 
 
-    /* let position;
-     try {
-       position = await getCurrentPositionAsync();
-     } catch (error) {
-       setError("Errore nel recupero della posizione: " + error.message);
-       setLoading(false);
-       return;
-     }
- 
-     const latitude = position.coords.latitude;
-     const longitude = position.coords.longitude;
- */
+    let position;
+    try {
+      position = await getCurrentPositionAsync();
+    } catch (error) {
+      setError("Errore nel recupero della posizione: " + error.message);
+      setLoading(false);
+      return;
+    }
 
-    const latitude = 46.33434
-    const longitude = 12.2343
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+
+
 
 
     const valUserId = localStorage.getItem("userId");
