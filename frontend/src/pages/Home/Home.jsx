@@ -94,8 +94,11 @@ export default function Home() {
         </div>
       )}
       {addingSpot && <AddSpot closeAddingSpot={closeAddingSpot} aggiungiSpotAllaLista={aggiungiSpotAllaLista} />}
-      <button type="button" onClick={() => { setRipos(true) }}>Riposiziona</button>
-      <button onClick={() => { openAddingSpot() }} disabled={loading}>aggiungi punto</button>
+      <div className="button-section">
+        <button type="button" onClick={() => { setRipos(true) }}>Riposiziona</button>
+        <button onClick={() => { openAddingSpot() }} disabled={loading}>aggiungi punto</button>
+      </div>
+
 
     </div >
   )
