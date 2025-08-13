@@ -1,5 +1,5 @@
 
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import ChangePosition from "./changePosition/ChangePosition"
 import L, { Handler } from 'leaflet';
@@ -29,12 +29,13 @@ const greenIcon = new L.Icon({
 
 
 
-export default function Mappa({ latitudine, longitudine, spotsList, rimuoviSpotDallaLista }) {
+export default function Mappa({ latitudine, longitudine, spotsList, rimuoviSpotDallaLista, setLoading, setRipos, ripos, setError }) {
 
 
   const [position, setPosition] = useState();
   const [vediDettagli, setVediDettagli] = useState(false);
   const [currentSpot, setCurrentSpot] = useState({})
+  const map = useMap();
 
 
 
@@ -48,6 +49,49 @@ export default function Mappa({ latitudine, longitudine, spotsList, rimuoviSpotD
   const closeAddingSpot = () => {
     document.body.classList.remove('no-scroll');
     setVediDettagli(false)
+
+  }
+
+  if (ripos) {
+    setLoading(true)
+    try {
+      RiposizionaMappa();
+      setRipos(false);
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const getPosition = async () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(//ricavo posizione attuale
+        (position) => {
+          const posAtt = [];
+          posAtt.push(position.coords.latitude);
+          posAtt.push(position.coords.longitude);
+          return posAtt
+        },
+        (error) => {
+          setError("Errore nel recupero della posizione, controllare che l'app abbia accesso alla posizione: Vai su Impostazioni > Privacy > Posizione ")
+          console.log(error)
+        }
+      )
+    } else {
+      setError("Geolocalizzazione non supportata dal browser.");
+    }
+  }
+
+
+  const RiposizionaMappa = async () => {
+
+    const posAttuale = await getPosition();
+    if (posAttuale) {
+      map.setView(posAttuale, map.getZoom())
+    }
+
+
 
   }
 

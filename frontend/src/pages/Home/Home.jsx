@@ -5,7 +5,7 @@ import { getUserSpots } from "../../api/getUserSpots"
 import Mappa from "../../components/mappa/Mappa"
 import AddSpot from "./addSpot/AddSpot"
 import Loader from "../../components/Loader"
-import { SetPosition } from "../../components/mappa/setposition/SetPosition"
+
 
 
 export default function Home() {
@@ -15,6 +15,7 @@ export default function Home() {
   const [spotsList, setSpotsList] = useState([]);
   const [addingSpot, setAddingSpot] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [ripos, setRipos] = useState(false);
 
 
   const openAddingSpot = () => {
@@ -89,14 +90,14 @@ export default function Home() {
       {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}
       {!loading && !error && (
         <div className="map-container">
-          <Mappa longitudine={longitudine} latitudine={latitudine} spotsList={spotsList} rimuoviSpotDallaLista={rimuoviSpotDallaLista} />
+          <Mappa longitudine={longitudine} latitudine={latitudine} spotsList={spotsList} rimuoviSpotDallaLista={rimuoviSpotDallaLista} setLoading={setLoading} setRipos={setRipos} ripos={ripos} setError={setError} />
         </div>
       )}
       {addingSpot && <AddSpot closeAddingSpot={closeAddingSpot} aggiungiSpotAllaLista={aggiungiSpotAllaLista} />}
-      <button type="button" onClick={SetPosition()}>Riposiziona</button>
+      <button type="button" onClick={() => { setRipos(true) }}>Riposiziona</button>
       <button onClick={() => { openAddingSpot() }} disabled={loading}>aggiungi punto</button>
 
-    </div>
+    </div >
   )
 
 }
