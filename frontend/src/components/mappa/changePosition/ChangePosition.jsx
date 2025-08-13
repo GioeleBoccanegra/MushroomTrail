@@ -1,16 +1,17 @@
-import { useEffect } from "react";
+
 import { useMap } from "react-leaflet"
 
-export default function ChangePosition({ position }) {
+export default function ChangePosition({ position, setRipos }) {
 
 
   const map = useMap();
 
-  useEffect(() => {
-    if (position) {
-      map.setView(position, map.getZoom())
-    }
-  }, [position, map])
+
+  if (position) {
+    map.setView(position, map.getZoom())
+    setRipos(false)
+  }
+
 
   return null;
 }
