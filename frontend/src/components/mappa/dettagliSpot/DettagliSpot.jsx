@@ -17,15 +17,19 @@ export default function DettagliSpot({ spot, closeAddingSpot }) {
     setLoading(false);
   }
 
-  const handleDelete = async () => {
+  const deleteSpot = async (token) => {
+    const res = await deleteSpotUser(spot.id, token);
+    if (res) {
+      closeAddingSpot();
+    }
+  }
+
+  const handleDelete = () => {
     setError("");
     setLoading(true)
     const token = getValidToken();
     try {
-      const res = await deleteSpotUser(spot.id, token);
-      if (res) {
-        closeAddingSpot();
-      }
+      deleteSpot(token);
     } catch (err) {
       setError(err);
     } finally { setLoading(false) }
@@ -40,7 +44,7 @@ export default function DettagliSpot({ spot, closeAddingSpot }) {
       <div className="add-post-div">
         <h2>dettagli spot</h2>
         {loading && <Loader />}
-        {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}s
+        {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}
         <div>
           <h3>nome spot</h3>
           <p>{spot.name}</p>
