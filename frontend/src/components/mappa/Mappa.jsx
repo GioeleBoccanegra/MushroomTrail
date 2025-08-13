@@ -14,6 +14,15 @@ const redIcon = new L.Icon({
   shadowSize: [41, 41]
 })
 
+const greenIcon = new L.Icon({
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
+  shadowSize: [41, 41]
+})
+
 
 
 
@@ -77,7 +86,7 @@ export default function Mappa({ latitudine, longitudine, spotsList }) {
       <ChangePosition position={position} />
 
 
-      <Marker position={position}>
+      <Marker position={position} icon={greenIcon}>
         <Popup>sei Qui</Popup>
       </Marker>
 
