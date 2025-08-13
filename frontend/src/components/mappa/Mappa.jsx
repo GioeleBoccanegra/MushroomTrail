@@ -88,6 +88,16 @@ export default function Mappa({ latitudine, longitudine, spotsList }) {
     )
   }
 
+  if (vediDettagli) {
+    return (
+
+      <DettagliSpot spot={currentSpot} closeAddingSpot={closeAddingSpot()} />
+
+
+
+    )
+  }
+
 
 
 
