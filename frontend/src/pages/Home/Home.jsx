@@ -73,9 +73,9 @@ export default function Home() {
     <div className={addingSpot ? "home-content no-click" : "home-content"}>
 
       <h1>MASHROOMTRAIL</h1>
-      {!error && loading && <Loader />}
+      {loading && <Loader />}
       {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}
-      {!loading && (
+      {!loading && !error && (
         <Mappa longitudine={longitudine} latitudine={latitudine} spotsList={spotsList} />
       )}
       {addingSpot && <AddSpot closeAddingSpot={closeAddingSpot} />}
