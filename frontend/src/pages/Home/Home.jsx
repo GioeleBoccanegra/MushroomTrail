@@ -36,7 +36,7 @@ export default function Home() {
 
 
 
-  const getSposts = async (token, userId) => {
+  const getSposts = async (userId, token) => {
     const res = await getUserSpots(userId, token)
     return res
   }
