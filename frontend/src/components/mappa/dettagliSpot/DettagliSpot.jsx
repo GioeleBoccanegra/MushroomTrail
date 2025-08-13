@@ -54,6 +54,9 @@ export default function DettagliSpot({ spot, closeAddingSpot, rimuoviSpotDallaLi
 
           <h3>immagine spot</h3>
           <p>da aggiungere</p>
+
+          <a href={`https://www.google.com/maps/search/?api=1&query=${spot.latitude},${spot.longitude}`} target="_blank"
+            rel="noopener noreferrer">raggiungi </a>
         </div>
         <button type="submit" disabled={loading} onClick={handleDelete}>Elimina</button>
         <button type="button" onClick={handleCancel} disabled={loading}>annulla</button>

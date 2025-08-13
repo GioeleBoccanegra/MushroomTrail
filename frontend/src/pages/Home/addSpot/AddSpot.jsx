@@ -3,6 +3,7 @@ import "./AddSpot.css";
 import { postSpotUser } from "../../../api/postSpotUser"
 import { getValidToken } from "../../../utils/getValidToken";
 import Loader from "../../../components/Loader";
+import { uploadImageToCloudinary } from "../../../utils/uploadImageToCloudinary"
 
 export default function AddSpot({ closeAddingSpot, aggiungiSpotAllaLista }) {
 
@@ -10,7 +11,6 @@ export default function AddSpot({ closeAddingSpot, aggiungiSpotAllaLista }) {
   const [name, setName] = useState(null);
   const [descrizione, setDescrizione] = useState(null);
   const [error, setError] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null)
   const [loading, setLoading] = useState(false)
 
 
@@ -19,7 +19,6 @@ export default function AddSpot({ closeAddingSpot, aggiungiSpotAllaLista }) {
   const handleChangeImage = (e) => {
     if (e.target.files && e.target.files[0]) {
       setImage(e.target.files[0])
-      setImageUrl("url")
     }
   }
 
@@ -56,6 +55,8 @@ export default function AddSpot({ closeAddingSpot, aggiungiSpotAllaLista }) {
       return
     }
 
+    const urlImmagine = await uploadImageToCloudinary(image);
+
 
     let position;
     try {
@@ -80,12 +81,12 @@ export default function AddSpot({ closeAddingSpot, aggiungiSpotAllaLista }) {
       setError("eeore nel recupero delle coordinate, riprovare")
       return
     }
-
+    console.log(urlImmagine)
 
     const spot = {
       name: name,
       description: descrizione,
-      imageUrl: imageUrl,
+      imageUrl: urlImmagine,
       latitude: latitude,
       longitude: longitude,
       user: user
@@ -97,11 +98,6 @@ export default function AddSpot({ closeAddingSpot, aggiungiSpotAllaLista }) {
 
       const res = await postSpotUser(token, spot)
       console.log(res);
-
-
-
-
-
 
       aggiungiSpotAllaLista(spot);
       closeAddingSpot()
