@@ -52,7 +52,7 @@ export default function Home() {
             setLongitudine(position.coords.longitude);
           },
           (error) => {
-            setError("Errore nel recupero della posizione, controllare che l'app abbia accesso alla posizione")
+            setError("Errore nel recupero della posizione, controllare che l'app abbia accesso alla posizione: Vai su Impostazioni > Privacy > Posizione ")
             console.log(error)
           }
         )

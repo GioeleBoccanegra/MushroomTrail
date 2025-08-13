@@ -4,7 +4,7 @@ import { postSpotUser } from "../../../api/postSpotUser"
 import { getValidToken } from "../../../utils/getValidToken";
 import Loader from "../../../components/Loader";
 
-export default function AddSpot({ closeAddingSpot }) {
+export default function AddSpot({ closeAddingSpot, aggiungiSpotAllaLista }) {
 
   const [image, setImage] = useState(null);
   const [name, setName] = useState(null);
@@ -93,7 +93,6 @@ export default function AddSpot({ closeAddingSpot }) {
 
 
 
-    console.log(JSON.stringify({ spot }))
     try {
 
       const res = await postSpotUser(token, spot)
@@ -104,7 +103,7 @@ export default function AddSpot({ closeAddingSpot }) {
 
 
 
-
+      aggiungiSpotAllaLista(spot);
       closeAddingSpot()
     } catch (err) {
       setError(err.message)
