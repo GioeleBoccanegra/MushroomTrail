@@ -34,7 +34,7 @@ export default function AddSpot({ closeAddingSpot, aggiungiSpotAllaLista }) {
         reject(new Error("Geolocalizzazione non supportata dal browser."));
       } else {
         navigator.geolocation.getCurrentPosition(resolve, reject, {
-          enableHighAccuracy: true,
+          enableHighAccuracy: false,
           timeout: 10000,
           maximumAge: 1000,
         });
@@ -73,10 +73,9 @@ export default function AddSpot({ closeAddingSpot, aggiungiSpotAllaLista }) {
       return;
     }
 
-    //const latitude = position.coords.latitude;
-    //const longitude = position.coords.longitude;
-    const latitude = 51.507351;
-    const longitude = -0.127758;
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+
 
 
 
