@@ -2,8 +2,9 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import ChangePosition from "./changePosition/ChangePosition"
-import L from 'leaflet';
+import L, { Handler } from 'leaflet';
 import { useEffect, useState } from 'react';
+import DettagliSpot from './dettagliSpot/dettagliSpot';
 
 const redIcon = new L.Icon({
   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
@@ -30,6 +31,19 @@ export default function Mappa({ latitudine, longitudine, spotsList }) {
 
 
   const [position, setPosition] = useState();
+  const [vediDettagli, setVediDettagli] = useState(false);
+
+
+
+  const openAddingSpot = () => {
+    document.body.classList.add('no-scroll');
+    setVediDettagli(true)
+  }
+
+  const closeAddingSpot = () => {
+    document.body.classList.remove('no-scroll');
+    setVediDettagli(false)
+  }
 
 
 
@@ -93,9 +107,15 @@ export default function Mappa({ latitudine, longitudine, spotsList }) {
       {spotsList && spotsList
         .filter(spot => spot.latitude !== undefined && spot.longitude !== undefined)
         .map((spot) => (
-          <Marker key={spot.id} position={[spot.latitude, spot.longitude]} icon={redIcon}><Popup>
-            {spot.name} <a href={`https://www.google.com/maps/search/?api=1&query=${spot.latitude},${spot.longitude}`} target="_blank"
-              rel="noopener noreferrer">raggiungi </a></Popup></Marker>
+          <Marker key={spot.id} position={[spot.latitude, spot.longitude]} icon={redIcon}>
+            <Popup>
+              {spot.name} <a href={`https://www.google.com/maps/search/?api=1&query=${spot.latitude},${spot.longitude}`} target="_blank"
+                rel="noopener noreferrer">raggiungi </a><br />
+
+              <button onClick={() => { openAddingSpot }}>Dettagli spot</button>
+              {vediDettagli && <DettagliSpot spot={spot} closeAddingSpot={closeAddingSpot} />}
+            </Popup>
+          </Marker>
         ))};
 
 
