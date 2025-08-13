@@ -4,10 +4,3 @@
   opacity: 0.5;
   /* Facoltativo, per dare feedback visivo */
 }
-
-.background-dettagli-spot {
-  position: absolute;
-  inset: 0;
-  background-color: white;
-  z-index: 100000000000000;
-}

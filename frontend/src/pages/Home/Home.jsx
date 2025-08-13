@@ -57,6 +57,7 @@ export default function Home() {
           },
           (error) => {
             setError("Errore nel recupero della posizione, controllare che l'app abbia accesso alla posizione")
+            console.log(error)
           }
         )
       } else {

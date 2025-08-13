@@ -47,3 +47,10 @@
 .no-scroll {
   overflow: hidden;
 }
+
+.background-dettagli-spot {
+  position: absolute;
+  inset: 0;
+  background-color: white;
+  z-index: 100000000000000;
+}

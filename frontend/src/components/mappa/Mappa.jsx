@@ -62,6 +62,7 @@ export default function Mappa({ latitudine, longitudine, spotsList, addBackgroun
       },
       (err) => {
         console.error("Errore nel recuperare la posizione, controllare che l'app abbia accesso alla posizione");
+        console.log(err)
       },
       {
         enableHighAccuracy: true,
