@@ -90,12 +90,12 @@ export default function Home() {
       {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}
       {!loading && !error && (
         <div className="map-container">
-          <Mappa longitudine={longitudine} latitudine={latitudine} spotsList={spotsList} rimuoviSpotDallaLista={rimuoviSpotDallaLista} setLoading={setLoading} setRipos={setRipos} ripos={ripos} setError={setError} />
+          <Mappa longitudine={longitudine} latitudine={latitudine} spotsList={spotsList} rimuoviSpotDallaLista={rimuoviSpotDallaLista} setRipos={setRipos} ripos={ripos} />
         </div>
       )}
       {addingSpot && <AddSpot closeAddingSpot={closeAddingSpot} aggiungiSpotAllaLista={aggiungiSpotAllaLista} />}
       <div className="button-section">
-        <button type="button" onClick={() => { setRipos(true) }}>Riposiziona</button>
+        <button type="button" onClick={() => { setRipos(true) }} disabled={loading}>Riposiziona</button>
         <button onClick={() => { openAddingSpot() }} disabled={loading}>aggiungi punto</button>
       </div>
 

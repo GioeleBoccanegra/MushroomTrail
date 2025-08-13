@@ -29,7 +29,7 @@ const greenIcon = new L.Icon({
 
 
 
-export default function Mappa({ latitudine, longitudine, spotsList, rimuoviSpotDallaLista, setRipos }) {
+export default function Mappa({ latitudine, longitudine, spotsList, rimuoviSpotDallaLista, setRipos, ripos }) {
 
 
   const [position, setPosition] = useState();
@@ -112,7 +112,7 @@ export default function Mappa({ latitudine, longitudine, spotsList, rimuoviSpotD
         url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
         attribution="Tiles &copy; Esri"
       />
-      <ChangePosition position={position} setRipos={setRipos} />
+      {ripos && < ChangePosition position={position} setRipos={setRipos} />}
 
 
       <Marker position={position} icon={greenIcon}>
