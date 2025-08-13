@@ -34,13 +34,11 @@ export default function Mappa({ latitudine, longitudine, spotsList }) {
 
   const [position, setPosition] = useState();
   const [vediDettagli, setVediDettagli] = useState(false);
-  const [currentSpot, setCurrentSpot] = useState({})
 
 
-  const openAddingSpot = (spot) => {
+  const openAddingSpot = () => {
     document.body.classList.add('no-scroll');
     setVediDettagli(true)
-    setCurrentSpot(spot)
 
   }
 
@@ -123,12 +121,12 @@ export default function Mappa({ latitudine, longitudine, spotsList }) {
               {spot.name} <a href={`https://www.google.com/maps/search/?api=1&query=${spot.latitude},${spot.longitude}`} target="_blank"
                 rel="noopener noreferrer">raggiungi </a><br />
 
-              <button onClick={() => { openAddingSpot(spot) }}>Dettagli spot</button>
+              <button onClick={() => { openAddingSpot() }}>Dettagli spot</button>
               {
                 vediDettagli && (
                   <>
                     <div className="overlay" onClick={closeAddingSpot}></div>
-                    <DettagliSpot spot={currentSpot} closeAddingSpot={closeAddingSpot()} />
+                    <DettagliSpot spot={spot} closeAddingSpot={closeAddingSpot} />
                   </>)
 
               }
