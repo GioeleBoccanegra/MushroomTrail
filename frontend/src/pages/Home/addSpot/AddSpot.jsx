@@ -73,8 +73,10 @@ export default function AddSpot({ closeAddingSpot, aggiungiSpotAllaLista }) {
       return;
     }
 
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
+    //const latitude = position.coords.latitude;
+    //const longitude = position.coords.longitude;
+    const latitude = 51.507351;
+    const longitude = -0.127758;
 
 
 
