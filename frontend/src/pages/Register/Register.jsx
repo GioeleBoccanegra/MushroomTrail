@@ -42,6 +42,7 @@ export default function Register() {
       <h1> REGISTRATI</h1>
       {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}
       {loading && <Loader />}
+      {loading && <p>caric...</p>}
       <form onSubmit={handleSubmit}>
         <label htmlFor="username" >
           Username:
