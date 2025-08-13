@@ -83,7 +83,6 @@ export default function Mappa({ latitudine, longitudine, spotsList }) {
         url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
         attribution="Tiles &copy; Esri"
       />
-      <ChangePosition position={position} />
 
 
       <Marker position={position} icon={greenIcon}>
@@ -95,7 +94,7 @@ export default function Mappa({ latitudine, longitudine, spotsList }) {
         .filter(spot => spot.latitude !== undefined && spot.longitude !== undefined)
         .map((spot) => (
           <Marker key={spot.id} position={[spot.latitude, spot.longitude]} icon={redIcon}><Popup>
-            punto di interesse <a href={`https://www.google.com/maps/search/?api=1&query=${spot.latitude},${spot.longitude}`} target="_blank"
+            {spot.name} <a href={`https://www.google.com/maps/search/?api=1&query=${spot.latitude},${spot.longitude}`} target="_blank"
               rel="noopener noreferrer">raggiungi </a></Popup></Marker>
         ))};
 
