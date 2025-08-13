@@ -18,18 +18,18 @@ export default function DettagliSpot({ spot, closeAddingSpot }) {
   }
 
   const deleteSpot = async (token) => {
-    const res = await deleteSpotUser(spot.id, token);
+    const res = await deleteSpotUser(token, spot.id);
     if (res) {
       closeAddingSpot();
     }
   }
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     setError("");
     setLoading(true)
     const token = getValidToken();
     try {
-      deleteSpot(token);
+      await deleteSpot(token);
     } catch (err) {
       setError(err);
     } finally { setLoading(false) }
