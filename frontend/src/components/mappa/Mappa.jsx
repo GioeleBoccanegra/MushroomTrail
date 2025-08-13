@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import ChangePosition from "./changePosition/ChangePosition"
 import L, { Handler } from 'leaflet';
 import { useEffect, useState } from 'react';
-import DettagliSpot from './dettagliSpot/dettagliSpot';
+import DettagliSpot from "./dettagliSpot/DettagliSpot";
 import Loader from '../Loader';
 
 const redIcon = new L.Icon({
