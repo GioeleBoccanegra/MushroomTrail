@@ -84,7 +84,7 @@ export default function AddSpot({ closeAddingSpot, aggiungiSpotAllaLista }) {
     const token = getValidToken();
 
     if (!longitude || !latitude) {
-      setError("eeore nel recupero delle coordinate, riprovare")
+      setError("errore nel recupero delle coordinate, riprovare")
       return
     }
     console.log(urlImmagine)

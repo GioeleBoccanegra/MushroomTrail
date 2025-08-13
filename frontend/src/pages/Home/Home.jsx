@@ -82,6 +82,13 @@ export default function Home() {
 
   }, [])
 
+  if (!latitudine || !longitudine) {
+    return (
+      <Loader />
+    )
+  }
+
+
   return (
     <div className={addingSpot ? "home-content no-click" : "home-content"}>
 
