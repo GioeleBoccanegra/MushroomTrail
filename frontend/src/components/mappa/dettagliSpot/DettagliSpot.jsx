@@ -5,6 +5,7 @@ import Loader from "../../Loader";
 import { deleteSpotUser } from "../../../api/deleteSpotUser.js"
 import { getValidToken } from "../../../utils/getValidToken.js"
 
+
 export default function DettagliSpot({ spot, closeAddingSpot, rimuoviSpotDallaLista }) {
 
   const [loading, setLoading] = useState(false)
@@ -37,6 +38,7 @@ export default function DettagliSpot({ spot, closeAddingSpot, rimuoviSpotDallaLi
 
 
   }
+
 
 
 

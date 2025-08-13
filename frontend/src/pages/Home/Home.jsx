@@ -5,6 +5,7 @@ import { getUserSpots } from "../../api/getUserSpots"
 import Mappa from "../../components/mappa/Mappa"
 import AddSpot from "./addSpot/AddSpot"
 import Loader from "../../components/Loader"
+import { useMap } from "react-leaflet"
 
 
 export default function Home() {
@@ -14,7 +15,7 @@ export default function Home() {
   const [spotsList, setSpotsList] = useState([]);
   const [addingSpot, setAddingSpot] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const map = useMap();
 
   const openAddingSpot = () => {
     document.body.classList.add('no-scroll');
@@ -34,6 +35,40 @@ export default function Home() {
     setSpotsList(prev => [...prev, spot])
   }
 
+  const getPosition = async () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(//ricavo posizione attuale
+        (position) => {
+          const posAtt = [];
+          posAtt.push(position.coords.latitude);
+          posAtt.push(position.coords.longitude);
+          return posAtt
+        },
+        (error) => {
+          setError("Errore nel recupero della posizione, controllare che l'app abbia accesso alla posizione: Vai su Impostazioni > Privacy > Posizione ")
+          console.log(error)
+        }
+      )
+    } else {
+      setError("Geolocalizzazione non supportata dal browser.");
+    }
+  }
+
+
+  const RiposizionaMappa = async () => {
+    setLoading(true);
+    try {
+      const posAttuale = await getPosition();
+      if (posAttuale) {
+        map.setView(posAttuale, map.getZoom())
+      }
+
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setLoading(false);
+    }
+  }
 
 
   const getSposts = async (userId, token) => {
@@ -91,6 +126,7 @@ export default function Home() {
         </div>
       )}
       {addingSpot && <AddSpot closeAddingSpot={closeAddingSpot} aggiungiSpotAllaLista={aggiungiSpotAllaLista} />}
+      <button type="button" onClick={RiposizionaMappa}>Riposiziona</button>
       <button onClick={() => { openAddingSpot() }} disabled={loading}>aggiungi punto</button>
 
     </div>
