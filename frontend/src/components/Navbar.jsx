@@ -17,7 +17,7 @@ export default function Navbar() {
 
       <div className="logo-navbar">
         <Link to="/">
-          <img src="../../public/MushroomTrailNavbar.png" className="image-logo"></img>
+          <img src="/MushroomTrailNavbar.png" className="image-logo"></img>
         </Link>
       </div>
 
