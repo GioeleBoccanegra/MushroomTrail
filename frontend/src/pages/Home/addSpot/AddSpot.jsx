@@ -19,6 +19,11 @@ export default function AddSpot({ closeAddingSpot, aggiungiSpotAllaLista }) {
   const handleChangeImage = (e) => {
     if (e.target.files && e.target.files[0]) {
       setImage(e.target.files[0])
+      if (image && image.size > 5 * 1024 * 1024) { // 5MB
+        alert("L'immagine è troppo grande! (max 5MB)");
+        e.target.value = ""; // reset
+        return;
+      }
     }
   }
 
