@@ -112,7 +112,7 @@ export default function Mappa({ latitudine, longitudine, spotsList }) {
               {spot.name} <a href={`https://www.google.com/maps/search/?api=1&query=${spot.latitude},${spot.longitude}`} target="_blank"
                 rel="noopener noreferrer">raggiungi </a><br />
 
-              <button onClick={() => { openAddingSpot }}>Dettagli spot</button>
+              <button onClick={() => { openAddingSpot() }}>Dettagli spot</button>
               {vediDettagli && <DettagliSpot spot={spot} closeAddingSpot={closeAddingSpot} />}
             </Popup>
           </Marker>

@@ -12,8 +12,8 @@ export default function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState("");
-  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
@@ -59,10 +59,10 @@ export default function Register() {
         </label>
         <input type="password" value={password} name="password" id="password" onChange={(e) => setPassword(e.target.value)} required disabled={loading} />
 
-        <button type="submit">Registrati</button>
+        <button type="submit" disabled={loading}>Registrati</button>
       </form>
       <div>
-        <Link to="/login"> Hai già un account?
+        <Link to="/login" > Hai già un account?
           <button disabled={loading}>Accedi</button>
         </Link>
       </div>
