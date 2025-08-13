@@ -1,11 +1,11 @@
 
-import { useState } from "react"
+import { useState, } from "react"
 import "./DettagliSpot.css"
 import Loader from "../../Loader";
 import { deleteSpotUser } from "../../../api/deleteSpotUser.js"
 import { getValidToken } from "../../../utils/getValidToken.js"
 
-export default function DettagliSpot({ spot, closeAddingSpot }) {
+export default function DettagliSpot({ spot, closeAddingSpot, rimuoviSpotDallaLista }) {
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("");
@@ -21,6 +21,7 @@ export default function DettagliSpot({ spot, closeAddingSpot }) {
     const res = await deleteSpotUser(token, spot.id);
     if (res) {
       closeAddingSpot();
+      rimuoviSpotDallaLista()
     }
   }
 

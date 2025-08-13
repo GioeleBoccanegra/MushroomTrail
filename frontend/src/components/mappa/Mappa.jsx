@@ -29,7 +29,7 @@ const greenIcon = new L.Icon({
 
 
 
-export default function Mappa({ latitudine, longitudine, spotsList }) {
+export default function Mappa({ latitudine, longitudine, spotsList, rimuoviSpotDallaLista }) {
 
 
   const [position, setPosition] = useState();
@@ -133,7 +133,7 @@ export default function Mappa({ latitudine, longitudine, spotsList }) {
 
       {
         vediDettagli && (<>
-          <DettagliSpot spot={currentSpot} closeAddingSpot={closeAddingSpot} />
+          <DettagliSpot spot={currentSpot} closeAddingSpot={closeAddingSpot} rimuoviSpotDallaLista={rimuoviSpotDallaLista} />
         </>)
 
       }

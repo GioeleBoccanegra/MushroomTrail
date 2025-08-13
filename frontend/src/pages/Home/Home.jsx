@@ -26,7 +26,9 @@ export default function Home() {
     setAddingSpot(false)
   }
 
-
+  const rimuoviSpotDallaLista = (spotId) => {
+    setSpotsList(prev => prev.filter(s => s.id !== spotId));
+  };
 
 
 
@@ -81,7 +83,7 @@ export default function Home() {
       {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}
       {!loading && !error && (
         <div className="map-container">
-          <Mappa longitudine={longitudine} latitudine={latitudine} spotsList={spotsList} />
+          <Mappa longitudine={longitudine} latitudine={latitudine} spotsList={spotsList} rimuoviSpotDallaLista={rimuoviSpotDallaLista} />
         </div>
       )}
       {addingSpot && <AddSpot closeAddingSpot={closeAddingSpot} />}
