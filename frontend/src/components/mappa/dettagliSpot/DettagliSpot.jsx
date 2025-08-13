@@ -50,7 +50,7 @@ export default function DettagliSpot({ spot, closeAddingSpot }) {
           <h3>immagine spot</h3>
           <p>da aggiungere</p>
         </div>
-        <button type="submit" disabled={loading} onClick={() => { handleDelete }}>Elimina</button>
+        <button type="submit" disabled={loading} onClick={handleDelete}>Elimina</button>
         <button type="button" onClick={handleCancel} disabled={loading}>annulla</button>
 
       </div>
