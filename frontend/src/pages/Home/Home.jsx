@@ -82,11 +82,6 @@ export default function Home() {
 
   }, [])
 
-  if (!latitudine || !longitudine) {
-    return (
-      <Loader />
-    )
-  }
 
 
   return (
