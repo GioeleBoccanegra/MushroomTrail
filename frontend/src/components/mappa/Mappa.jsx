@@ -28,7 +28,7 @@ const greenIcon = new L.Icon({
 
 
 
-export default function Mappa({ latitudine, longitudine, spotsList }) {
+export default function Mappa({ latitudine, longitudine, spotsList, addBackground, removeBackground }) {
 
 
   const [position, setPosition] = useState();
@@ -39,11 +39,13 @@ export default function Mappa({ latitudine, longitudine, spotsList }) {
   const openAddingSpot = () => {
     document.body.classList.add('no-scroll');
     setVediDettagli(true)
+    addBackground();
   }
 
   const closeAddingSpot = () => {
     document.body.classList.remove('no-scroll');
     setVediDettagli(false)
+    removeBackground();
   }
 
 
@@ -121,6 +123,7 @@ export default function Mappa({ latitudine, longitudine, spotsList }) {
             </Popup>
           </Marker>
         ))};
+
 
     </MapContainer >
 
