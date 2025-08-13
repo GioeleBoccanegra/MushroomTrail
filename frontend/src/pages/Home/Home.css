@@ -1,6 +1,0 @@
-.no-click {
-  pointer-events: none;
-  /* Disabilita click, hover, ecc. */
-  opacity: 0.5;
-  /* Facoltativo, per dare feedback visivo */
-}
