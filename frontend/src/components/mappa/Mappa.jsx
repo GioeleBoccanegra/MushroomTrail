@@ -5,6 +5,7 @@ import ChangePosition from "./changePosition/ChangePosition"
 import L, { Handler } from 'leaflet';
 import { useEffect, useState } from 'react';
 import DettagliSpot from './dettagliSpot/dettagliSpot';
+import Loader from '../Loader';
 
 const redIcon = new L.Icon({
   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
@@ -67,6 +68,7 @@ export default function Mappa({ latitudine, longitudine, spotsList }) {
       }
     );
     return () => navigator.geolocation.clearWatch(watchId);
+
   }, []);
 
 
@@ -77,7 +79,7 @@ export default function Mappa({ latitudine, longitudine, spotsList }) {
 
   if (!latitudine || !longitudine) {
     return (
-      <div>Caricamento mappa</div>
+      <Loader />
     )
   }
 
@@ -90,6 +92,8 @@ export default function Mappa({ latitudine, longitudine, spotsList }) {
 
 
   return (
+
+
 
 
     <MapContainer center={[latitudine, longitudine]} zoom={15} style={{ height: '500px', width: '100%' }}>
@@ -118,14 +122,9 @@ export default function Mappa({ latitudine, longitudine, spotsList }) {
           </Marker>
         ))};
 
-
-
-
-
-
-
-
     </MapContainer >
+
+
 
   )
 

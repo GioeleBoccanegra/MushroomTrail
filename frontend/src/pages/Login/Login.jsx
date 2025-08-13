@@ -65,7 +65,7 @@ export default function Login() {
         </label>
         <input type="password" value={password} name="password" id="password" onChange={(e) => setPassword(e.target.value)} required disabled={loading} />
 
-        <button type="submit">Accedi</button>
+        <button type="submit" disabled={loading}>Accedi</button>
       </form>
       <div>
         <Link to="/register"> Non hai ancora un account?
