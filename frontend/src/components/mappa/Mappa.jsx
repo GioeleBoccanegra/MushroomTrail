@@ -88,15 +88,7 @@ export default function Mappa({ latitudine, longitudine, spotsList }) {
     )
   }
 
-  if (vediDettagli) {
-    return (
 
-      <DettagliSpot spot={currentSpot} closeAddingSpot={closeAddingSpot()} />
-
-
-
-    )
-  }
 
 
 
@@ -132,18 +124,21 @@ export default function Mappa({ latitudine, longitudine, spotsList }) {
                 rel="noopener noreferrer">raggiungi </a><br />
 
               <button onClick={() => { openAddingSpot(spot) }}>Dettagli spot</button>
+              {
+                vediDettagli && (
+                  <>
+                    <div className="overlay" onClick={closeAddingSpot}></div>
+                    <DettagliSpot spot={currentSpot} closeAddingSpot={closeAddingSpot()} />
+                  </>)
+
+              }
 
             </Popup>
           </Marker>
         ))};
 
 
-      {
-        vediDettagli && (<>
-          <DettagliSpot spot={currentSpot} closeAddingSpot={closeAddingSpot()} />
-        </>)
 
-      }
     </MapContainer >
 
 
