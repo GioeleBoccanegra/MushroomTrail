@@ -6,6 +6,7 @@ import L, { Handler } from 'leaflet';
 import { useEffect, useState } from 'react';
 import DettagliSpot from "./dettagliSpot/DettagliSpot";
 import Loader from '../Loader';
+import "./Mappa.css"
 
 const redIcon = new L.Icon({
   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
@@ -28,7 +29,7 @@ const greenIcon = new L.Icon({
 
 
 
-export default function Mappa({ latitudine, longitudine, spotsList, addBackground, removeBackground }) {
+export default function Mappa({ latitudine, longitudine, spotsList }) {
 
 
   const [position, setPosition] = useState();
@@ -39,13 +40,13 @@ export default function Mappa({ latitudine, longitudine, spotsList, addBackgroun
   const openAddingSpot = () => {
     document.body.classList.add('no-scroll');
     setVediDettagli(true)
-    addBackground();
+
   }
 
   const closeAddingSpot = () => {
     document.body.classList.remove('no-scroll');
     setVediDettagli(false)
-    removeBackground();
+
   }
 
 
@@ -120,7 +121,11 @@ export default function Mappa({ latitudine, longitudine, spotsList, addBackgroun
                 rel="noopener noreferrer">raggiungi </a><br />
 
               <button onClick={() => { openAddingSpot() }}>Dettagli spot</button>
-              {vediDettagli && <DettagliSpot spot={spot} closeAddingSpot={closeAddingSpot} />}
+              {vediDettagli && (
+                <>
+                  <div className="overlay" onClick={closeAddingSpot}></div>
+                  <DettagliSpot spot={spot} closeAddingSpot={closeAddingSpot} />
+                </>)}
             </Popup>
           </Marker>
         ))};

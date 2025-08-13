@@ -26,13 +26,7 @@ export default function Home() {
     setAddingSpot(false)
   }
 
-  const addBackground = () => {
-    document.body.classList.add("background-dettagli-spot")
-  }
 
-  const removeBackground = () => {
-    document.body.classList.remove("background-dettagli-spot")
-  }
 
 
 
@@ -86,7 +80,7 @@ export default function Home() {
       {loading && <Loader />}
       {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}
       {!loading && !error && (
-        <Mappa longitudine={longitudine} latitudine={latitudine} spotsList={spotsList} addBackground={addBackground} removeBackground={removeBackground} />
+        <Mappa longitudine={longitudine} latitudine={latitudine} spotsList={spotsList} />
       )}
       {addingSpot && <AddSpot closeAddingSpot={closeAddingSpot} />}
       <button onClick={() => { openAddingSpot() }} disabled={loading}>aggiungi punto</button>
