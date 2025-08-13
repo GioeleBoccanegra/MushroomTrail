@@ -4,6 +4,7 @@ import { getValidToken } from "../../utils/getValidToken"
 import { getUserSpots } from "../../api/getUserSpots"
 import Mappa from "../../components/mappa/Mappa"
 import AddSpot from "./addSpot/AddSpot"
+import Loader from "../../components/Loader"
 
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
   const [error, setError] = useState(null);
   const [spotsList, setSpotsList] = useState([]);
   const [addingSpot, setAddingSpot] = useState(false);
+  const [loading, setLoading] = useState(false);
 
 
   const openAddingSpot = () => {
@@ -32,6 +34,8 @@ export default function Home() {
 
 
   useEffect(() => {
+    setLoading(true)
+    setError("")
 
     const fetchData = async () => {
       const userId = localStorage.getItem("userId")
@@ -53,8 +57,14 @@ export default function Home() {
       const spots = await getSposts(userId, token);
       setSpotsList(spots)
     }
-
-    fetchData();
+    try {
+      fetchData()
+    } catch (err) {
+      setError("errore nel recupero degli spot")
+      console.log(err)
+    } finally {
+      setLoading(false)
+    }
 
 
   }, [])
@@ -63,10 +73,14 @@ export default function Home() {
     <div className={addingSpot ? "home-content no-click" : "home-content"}>
 
       <h1>MASHROOMTRAIL</h1>
+      {loading && <Loader />}
       {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}
-      <Mappa longitudine={longitudine} latitudine={latitudine} spotsList={spotsList} />
+      {!loading && (
+        <Mappa longitudine={longitudine} latitudine={latitudine} spotsList={spotsList} />
+      )}
       {addingSpot && <AddSpot closeAddingSpot={closeAddingSpot} />}
-      <button onClick={() => { openAddingSpot() }}>aggiungi punto</button>
+      <button onClick={() => { openAddingSpot() }} disabled={loading}>aggiungi punto</button>
+
     </div>
   )
 
