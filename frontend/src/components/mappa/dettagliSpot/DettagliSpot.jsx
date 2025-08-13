@@ -53,7 +53,7 @@ export default function DettagliSpot({ spot, closeAddingSpot, rimuoviSpotDallaLi
           <p> {spot.description}</p>
 
           <h3>immagine spot</h3>
-          <p>da aggiungere</p>
+          <img src={spot.imageUrl}></img>
 
           <a href={`https://www.google.com/maps/search/?api=1&query=${spot.latitude},${spot.longitude}`} target="_blank"
             rel="noopener noreferrer">raggiungi </a>
