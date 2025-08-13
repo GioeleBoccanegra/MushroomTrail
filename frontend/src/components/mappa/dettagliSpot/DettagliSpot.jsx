@@ -1,6 +1,7 @@
 
 import { useState } from "react"
 import "./DettagliSpot.css"
+import Loader from "../../Loader";
 
 export default function DettagliSpot({ spot, closeAddingSpot }) {
 
@@ -8,7 +9,9 @@ export default function DettagliSpot({ spot, closeAddingSpot }) {
 
 
   const handleCancel = () => {
+    setLoading(true);
     closeAddingSpot();
+    setLoading(false);
   }
 
 
@@ -17,6 +20,7 @@ export default function DettagliSpot({ spot, closeAddingSpot }) {
     <div className="post-add-overlay">
       <div className="add-post-div">
         <h2>dettagli spot</h2>
+        {loading && <Loader />}
         <div>
           <h3>nome spot</h3>
           <p>{spot.name}</p>

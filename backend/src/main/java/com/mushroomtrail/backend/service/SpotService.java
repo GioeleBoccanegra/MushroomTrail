@@ -45,4 +45,9 @@ public class SpotService {
     return spotSalvato;
   }
 
+  public void deleteSpot(Long id) {
+    spotRepository.deleteById(id);
+
+  }
+
 }
