@@ -80,7 +80,9 @@ export default function Home() {
       {loading && <Loader />}
       {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}
       {!loading && !error && (
-        <Mappa longitudine={longitudine} latitudine={latitudine} spotsList={spotsList} />
+        <div className="map-container">
+          <Mappa longitudine={longitudine} latitudine={latitudine} spotsList={spotsList} />
+        </div>
       )}
       {addingSpot && <AddSpot closeAddingSpot={closeAddingSpot} />}
       <button onClick={() => { openAddingSpot() }} disabled={loading}>aggiungi punto</button>

@@ -12,7 +12,6 @@
 .add-post-div {
   background-color: black;
   display: flex;
-  height: 80vh;
   width: 80vw;
   padding: 20px 30px;
   border-radius: 10px;
