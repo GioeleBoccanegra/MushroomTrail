@@ -30,10 +30,14 @@ export default function Home() {
     setSpotsList(prev => prev.filter(s => s.id !== spotId));
   };
 
+  const aggiungiSpotAllaLista = (spot) => {
+    setSpotsList(prev => [...prev, spot])
+  }
+
 
 
   const getSposts = async (token, userId) => {
-    const res = await getUserSpots(token, userId)
+    const res = await getUserSpots(userId, token)
     return res
   }
 
@@ -86,7 +90,7 @@ export default function Home() {
           <Mappa longitudine={longitudine} latitudine={latitudine} spotsList={spotsList} rimuoviSpotDallaLista={rimuoviSpotDallaLista} />
         </div>
       )}
-      {addingSpot && <AddSpot closeAddingSpot={closeAddingSpot} />}
+      {addingSpot && <AddSpot closeAddingSpot={closeAddingSpot} aggiungiSpotAllaLista={aggiungiSpotAllaLista} />}
       <button onClick={() => { openAddingSpot() }} disabled={loading}>aggiungi punto</button>
 
     </div>
