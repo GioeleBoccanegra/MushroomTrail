@@ -28,19 +28,19 @@ export default function AddSpot({ closeAddingSpot, aggiungiSpotAllaLista }) {
     }
   }
 
-  function getCurrentPositionAsync() {
+  /*function getCurrentPositionAsync() {
     return new Promise((resolve, reject) => {
       if (!navigator.geolocation) {
         reject(new Error("Geolocalizzazione non supportata dal browser."));
       } else {
         navigator.geolocation.getCurrentPosition(resolve, reject, {
-          enableHighAccuracy: false,
+          enableHighAccuracy: true,
           timeout: 10000,
           maximumAge: 1000,
         });
       }
     });
-  }
+  }*/
 
 
 
@@ -64,17 +64,20 @@ export default function AddSpot({ closeAddingSpot, aggiungiSpotAllaLista }) {
     const urlImmagine = await uploadImageToCloudinary(image);
 
 
-    let position;
+    /*let position;
     try {
       position = await getCurrentPositionAsync();
     } catch (error) {
       setError("Errore nel recupero della posizione: " + error.message);
       setLoading(false);
       return;
-    }
+    }*/
 
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
+    // const latitude = position.coords.latitude;
+    //const longitude = position.coords.longitude;
+
+    const latitude = -0.127758
+    const longitude = 51.507351
 
 
 
