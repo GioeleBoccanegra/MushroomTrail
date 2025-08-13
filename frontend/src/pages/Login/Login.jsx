@@ -7,6 +7,7 @@ import { loginUser } from "../../api/loginUser"
 import { useDispatch } from "react-redux";
 import { login } from "../../features/authSlice";
 import { useNavigate } from "react-router-dom";
+import Loader from "../../components/Loader";
 
 
 
@@ -49,6 +50,7 @@ export default function Login() {
   return (
     <div className="login-container">
       <h1> ACCEDI</h1>
+      {loading && <Loader />}
       {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}
       {successoRegistrazione && <p style={{ color: "green" }} aria-live="polite">Registrazione effettuata con successo, ora puoi accedere con le tue credenziali</p>}
       <form onSubmit={handleSubmit}>
@@ -67,7 +69,7 @@ export default function Login() {
       </form>
       <div>
         <Link to="/register"> Non hai ancora un account?
-          <button>Registrati</button>
+          <button disabled={loading}>Registrati</button>
         </Link>
       </div>
 

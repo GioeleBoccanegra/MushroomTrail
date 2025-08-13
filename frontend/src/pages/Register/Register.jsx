@@ -4,6 +4,7 @@ import { useState } from "react"
 import "./Register.css"
 import { registerUser } from "../../api/registerUser"
 import { useNavigate } from "react-router-dom"
+import Loader from "../../components/Loader"
 
 
 
@@ -40,6 +41,7 @@ export default function Register() {
     <div className="login-container">
       <h1> REGISTRATI</h1>
       {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}
+      {loading && <Loader />}
       <form onSubmit={handleSubmit}>
         <label htmlFor="username" >
           Username:
@@ -60,7 +62,7 @@ export default function Register() {
       </form>
       <div>
         <Link to="/login"> Hai già un account?
-          <button>Accedi</button>
+          <button disabled={loading}>Accedi</button>
         </Link>
       </div>
 
