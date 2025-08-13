@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./AddSpot.css";
 import { postSpotUser } from "../../../api/postSpotUser"
 import { getValidToken } from "../../../utils/getValidToken";
+import Loader from "../../../components/Loader";
 
 export default function AddSpot({ closeAddingSpot }) {
 
@@ -11,6 +12,7 @@ export default function AddSpot({ closeAddingSpot }) {
   const [error, setError] = useState(null);
   const [imageUrl, setImageUrl] = useState(null)
   const [loading, setLoading] = useState(false)
+
 
 
 
@@ -122,7 +124,7 @@ export default function AddSpot({ closeAddingSpot }) {
     <div className="post-add-overlay">
       <div className="add-post-div">
         <h2>dati spot</h2>
-        {loading && <p>caric...</p>}
+        {!error && loading && <Loader />}
         {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}
         <form onSubmit={handleSubmit}>
           <label htmlFor="name">Nome spot</label>

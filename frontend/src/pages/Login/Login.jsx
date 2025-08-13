@@ -50,7 +50,7 @@ export default function Login() {
   return (
     <div className="login-container">
       <h1> ACCEDI</h1>
-      {loading && <Loader />}
+      {!error && loading && <Loader />}
       {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}
       {successoRegistrazione && <p style={{ color: "green" }} aria-live="polite">Registrazione effettuata con successo, ora puoi accedere con le tue credenziali</p>}
       <form onSubmit={handleSubmit}>

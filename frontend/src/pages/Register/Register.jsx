@@ -41,8 +41,7 @@ export default function Register() {
     <div className="login-container">
       <h1> REGISTRATI</h1>
       {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}
-      {loading && <Loader />}
-      {loading && <p>caric...</p>}
+      {!error && loading && <Loader />}
       <form onSubmit={handleSubmit}>
         <label htmlFor="username" >
           Username:

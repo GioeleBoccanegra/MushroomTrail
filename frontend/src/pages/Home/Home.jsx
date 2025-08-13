@@ -47,7 +47,7 @@ export default function Home() {
             setLongitudine(position.coords.longitude);
           },
           (error) => {
-            setError("Errore nel recupero della posizione:", error.message)
+            setError("Errore nel recupero della posizione, controllare che l'app abbia accesso alla posizione")
           }
         )
       } else {
@@ -73,7 +73,7 @@ export default function Home() {
     <div className={addingSpot ? "home-content no-click" : "home-content"}>
 
       <h1>MASHROOMTRAIL</h1>
-      {loading && <Loader />}
+      {!error && loading && <Loader />}
       {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}
       {!loading && (
         <Mappa longitudine={longitudine} latitudine={latitudine} spotsList={spotsList} />
