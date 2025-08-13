@@ -1,3 +1,12 @@
+/* Overlay scuro dietro al loader */
+.loader-overlay {
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
 /* Cerchio animato */
 .loader {
   width: 60px;
