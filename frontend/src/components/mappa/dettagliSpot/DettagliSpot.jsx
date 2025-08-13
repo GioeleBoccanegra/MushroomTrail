@@ -21,7 +21,7 @@ export default function DettagliSpot({ spot, closeAddingSpot, rimuoviSpotDallaLi
     const res = await deleteSpotUser(token, spot.id);
     if (res) {
       closeAddingSpot();
-      rimuoviSpotDallaLista()
+      rimuoviSpotDallaLista(spot.id)
     }
   }
 
