@@ -37,6 +37,7 @@ export default function Mappa({ latitudine, longitudine, spotsList }) {
   const [currentSpot, setCurrentSpot] = useState({})
 
 
+
   const openAddingSpot = (spot) => {
     document.body.classList.add('no-scroll');
     setVediDettagli(true)
@@ -49,6 +50,8 @@ export default function Mappa({ latitudine, longitudine, spotsList }) {
     setVediDettagli(false)
 
   }
+
+
 
 
 
