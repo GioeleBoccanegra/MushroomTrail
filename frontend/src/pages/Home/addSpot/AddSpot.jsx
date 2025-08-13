@@ -129,7 +129,7 @@ export default function AddSpot({ closeAddingSpot, aggiungiSpotAllaLista }) {
           <input name="description" type="text" id="description" disabled={loading} onChange={(e) => { setDescrizione(e.target.value) }} />
 
           <label htmlFor="immagineSpot">Carica immagine</label>
-          <input type="file" accept="image/*" onChange={handleChangeImage} disabled={loading}></input>
+          <input id="immagineSpot" type="file" accept="image/*" capture="environment" onChange={handleChangeImage} disabled={loading}></input>
 
           {image && (
             <div>
