@@ -69,7 +69,7 @@ public class SecurityConfig {
     configuration.setAllowedOrigins(List.of(
         "http://localhost:5173",
         "http://192.168.1.200:5173",
-        "https://mashroomtrail.netlify.app"));
+        "https://mushroomtrail.netlify.app"));
 
     configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 
