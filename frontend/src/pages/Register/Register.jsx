@@ -61,9 +61,11 @@ export default function Register() {
         <button type="submit" disabled={loading}>Registrati</button>
       </form>
       <div>
-        <Link to="/login" > Hai già un account?
-          <button disabled={loading}>Accedi</button>
-        </Link>
+        {!loading && (
+          <Link to="/login" > Hai già un account?
+            <button disabled={loading}>Accedi</button>
+          </Link>
+        )}
       </div>
 
     </div>

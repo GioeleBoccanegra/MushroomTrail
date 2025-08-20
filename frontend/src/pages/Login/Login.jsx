@@ -68,9 +68,11 @@ export default function Login() {
         <button type="submit" disabled={loading}>Accedi</button>
       </form>
       <div>
-        <Link to="/register"> Non hai ancora un account?
-          <button disabled={loading}>Registrati</button>
-        </Link>
+        {!loading && (
+          <Link to="/register"> Non hai ancora un account?
+            <button disabled={loading}>Registrati</button>
+          </Link>
+        )}
       </div>
 
     </div>

@@ -87,7 +87,7 @@ export default function Home() {
   return (
     <div className={addingSpot ? "home-content no-click" : "home-content"}>
 
-      <h1>MASHROOMTRAIL</h1>
+      <h1>MUSHROOMTRAIL</h1>
       {loading && <Loader />}
       {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}
       {!loading && (
