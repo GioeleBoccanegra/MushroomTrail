@@ -140,7 +140,7 @@ export default function AddSpot({ closeAddingSpot, aggiungiSpotAllaLista }) {
           <input id="immagineSpot" type="file" accept="image/*" onChange={handleChangeImage} disabled={loading}></input>
 
           {image && (
-            <div>
+            <div className="image-preview">
               <p>anteprima</p>
               <img
                 src={URL.createObjectURL(image)}
