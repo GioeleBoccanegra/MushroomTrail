@@ -6,20 +6,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .add-post-div {
   background-color: black;
   display: flex;
-  height: 80vh;
+  height: 88vh;
+  /* stessa altezza di DettagliSpot */
   width: 80vw;
+  /* stessa larghezza di DettagliSpot */
   padding: 20px 30px;
   border-radius: 10px;
   flex-direction: column;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-y: auto;
+  /* scroll interno se il contenuto è troppo */
+  justify-content: flex-start;
 }
-
 
 .add-post-div h2 {
   text-align: center;
@@ -32,7 +35,8 @@
   display: block;
   margin-top: 10px;
   font-weight: 600;
-  color: #333;
+  color: #ddd;
+  /* più leggibile su sfondo nero */
 }
 
 .add-post-div input[type="text"],
@@ -56,7 +60,7 @@
 .add-post-div p {
   margin-top: 10px;
   font-weight: 600;
-  color: #555;
+  color: #ddd;
 }
 
 .add-post-div img {
@@ -95,4 +99,19 @@
 
 .add-post-div button[type="button"]:hover {
   background-color: #999;
+}
+
+/* --- Responsive Mobile First --- */
+@media (max-width: 768px) {
+  .add-post-div {
+    width: 95vw;
+    /* più largo su schermi piccoli */
+    height: 90vh;
+    /* un po’ più alto per spazio maggiore */
+    padding: 15px;
+  }
+
+  .add-post-div button {
+    width: 100%;
+  }
 }
