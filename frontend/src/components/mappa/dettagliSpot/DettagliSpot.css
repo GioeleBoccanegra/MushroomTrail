@@ -100,3 +100,10 @@
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+.spot-det-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

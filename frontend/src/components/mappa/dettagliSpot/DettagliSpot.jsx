@@ -60,9 +60,10 @@ export default function DettagliSpot({ spot, closeAddingSpot, rimuoviSpotDallaLi
           <a href={`https://www.google.com/maps/search/?api=1&query=${spot.latitude},${spot.longitude}`} target="_blank"
             rel="noopener noreferrer">raggiungi </a>
         </div>
-        <button type="submit" disabled={loading} onClick={handleDelete}>Elimina</button>
-        <button type="button" onClick={handleCancel} disabled={loading}>annulla</button>
-
+        <div className="spot-det-buttons">
+          <button type="submit" disabled={loading} onClick={handleDelete}>Elimina</button>
+          <button type="button" onClick={handleCancel} disabled={loading}>annulla</button>
+        </div>
       </div>
     </div >
   )
