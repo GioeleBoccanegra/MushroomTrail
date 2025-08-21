@@ -43,8 +43,8 @@ export default function DettagliSpot({ spot, closeAddingSpot, rimuoviSpotDallaLi
 
 
   return (
-    <div className="post-add-overlay">
-      <div className="add-post-div">
+    <div className="spot-det-overlay">
+      <div className="det-spot-div">
         <h2>dettagli spot</h2>
         {loading && <Loader />}
         {error && <p style={{ color: "red" }} aria-live="assertive">{error}</p>}
