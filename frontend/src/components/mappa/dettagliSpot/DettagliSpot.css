@@ -94,12 +94,12 @@
 
 /* Bottoni principali (conferma/azioni positive) */
 .spot-det-overlay button[type="submit"] {
-  background-color: #2e7d32;
+  background-color: red;
   color: #fff;
 }
 
 .spot-det-overlay button[type="submit"]:hover {
-  background-color: #276c27;
+  background-color: rgb(158, 3, 3);
 }
 
 /* Bottoni secondari (annulla/chiudi) */
