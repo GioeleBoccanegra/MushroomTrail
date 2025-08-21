@@ -1,4 +1,4 @@
-.post-add-overlay {
+.spot-det-overlay {
   position: fixed;
   background-color: rgba(0, 0, 0, 0.336);
   inset: 0;
@@ -9,7 +9,7 @@
 
 }
 
-.add-post-div {
+.det-spot-div {
   background-color: black;
   display: flex;
   width: 80vw;
@@ -17,37 +17,39 @@
   border-radius: 10px;
   flex-direction: column;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  justify-content: center;
+  align-items: center;
 }
 
-.post-add-overlay h2 {
+.spot-det-overlay h2 {
   font-size: 1.8rem;
   text-align: center;
   margin-bottom: 1.5rem;
   color: #2c3e50;
 }
 
-.post-add-overlay h3 {
+.spot-det-overlay h3 {
   font-size: 1.2rem;
   margin-top: 1rem;
   margin-bottom: 0.3rem;
   color: #34495e;
 }
 
-.post-add-overlay p {
+.spot-det-overlay p {
   font-size: 1rem;
   line-height: 1.5;
   margin-bottom: 0.8rem;
   color: #555;
 }
 
-.post-add-overlay img {
-  max-width: 100%;
+.spot-det-overlay img {
+  max-width: 30vh;
   border-radius: 10px;
   margin: 0.5rem 0 1rem 0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.post-add-overlay a {
+.spot-det-overlay a {
   display: inline-block;
   margin-top: 0.8rem;
   padding: 0.6rem 1rem;
@@ -58,11 +60,11 @@
   transition: background 0.3s ease;
 }
 
-.post-add-overlay a:hover {
+.spot-det-overlay a:hover {
   background-color: #2980b9;
 }
 
-.post-add-overlay button {
+.spot-det-overlay button {
   margin-top: 1rem;
   padding: 0.6rem 1.2rem;
   font-size: 1rem;
@@ -72,26 +74,26 @@
   transition: background 0.3s ease;
 }
 
-.post-add-overlay button[type="submit"] {
+.spot-det-overlay button[type="submit"] {
   background-color: #e74c3c;
   color: #fff;
   margin-right: 0.5rem;
 }
 
-.post-add-overlay button[type="submit"]:hover {
+.spot-det-overlay button[type="submit"]:hover {
   background-color: #c0392b;
 }
 
-.post-add-overlay button[type="button"] {
+.spot-det-overlay button[type="button"] {
   background-color: #7f8c8d;
   color: #fff;
 }
 
-.post-add-overlay button[type="button"]:hover {
+.spot-det-overlay button[type="button"]:hover {
   background-color: #6c7a7a;
 }
 
-.post-add-overlay button:disabled {
+.spot-det-overlay button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
