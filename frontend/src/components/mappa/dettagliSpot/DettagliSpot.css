@@ -12,7 +12,9 @@
 .det-spot-div {
   background-color: black;
   display: flex;
-  width: 83vw;
+  width: 80vw;
+  height: 75vh;
+  overflow: scroll;
   padding-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
